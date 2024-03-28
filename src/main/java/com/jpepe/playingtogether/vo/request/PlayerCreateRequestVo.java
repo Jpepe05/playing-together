@@ -1,3 +1,3 @@
 package com.jpepe.playingtogether.vo.request;
 
-public record PlayerCreateRequestVo(Long id, String name) {}
+public record PlayerCreateRequestVo(String id, String name, boolean isGuardian, int age) {}

@@ -43,11 +43,11 @@ public class MatchService {
     matchRepository.save(match);
   }
 
-  private static Stream<Long> getArtistId(MatchFinishedRequestVo matchRequestVo) {
+  private static Stream<String> getArtistId(MatchFinishedRequestVo matchRequestVo) {
     return matchRequestVo.rounds().stream().map(RoundRequestVo::artistId);
   }
 
-  private static Stream<Long> getPlayerIds(MatchFinishedRequestVo matchRequestVo) {
+  private static Stream<String> getPlayerIds(MatchFinishedRequestVo matchRequestVo) {
     return matchRequestVo.rounds().stream()
         .map(RoundRequestVo::players)
         .flatMap(Collection::stream)

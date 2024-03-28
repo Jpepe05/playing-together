@@ -6,5 +6,5 @@ public record RoundRequestVo(
     String category,
     String wordToGuess,
     String image,
-    Long artistId,
+    String artistId,
     List<PlayerAttemptRequestVo> players) {}

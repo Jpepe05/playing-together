@@ -19,7 +19,7 @@ public class PlayerService {
     playerRepository.save(player);
   }
 
-  public PlayerResponseVo getPlayerInfo(Long playerId) {
+  public PlayerResponseVo getPlayerInfo(String playerId) {
     var player = playerRepository.findById(playerId).orElseThrow(RuntimeException::new);
     return playerMapper.to(player);
   }

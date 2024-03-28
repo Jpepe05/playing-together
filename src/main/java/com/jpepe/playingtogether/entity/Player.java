@@ -10,8 +10,10 @@ import java.util.List;
 @Entity
 @Data
 public class Player {
-  @Id private Long id;
+  @Id private String id;
   private String name;
+  private boolean isGuardian;
+  private int age;
 
   @OneToMany(mappedBy = "player")
   private List<PlayerRound> playerRounds;

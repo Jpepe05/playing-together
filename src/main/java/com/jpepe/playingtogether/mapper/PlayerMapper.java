@@ -11,7 +11,9 @@ public interface PlayerMapper {
 
   @Mapping(target = "paintedRounds", ignore = true)
   @Mapping(target = "playerRounds", ignore = true)
+  @Mapping(source = "isGuardian", target = "guardian")
   Player from(PlayerCreateRequestVo playerVo);
 
+  @Mapping(target = "isGuardian", source = "guardian")
   PlayerResponseVo to(Player player);
 }

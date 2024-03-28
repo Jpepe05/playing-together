@@ -8,7 +8,7 @@ import java.util.Collection;
 import java.util.List;
 
 @Repository
-public interface PlayerRepository extends JpaRepository<Player, Long> {
+public interface PlayerRepository extends JpaRepository<Player, String> {
 
-  List<Player> findAllByIdIn(Collection<Long> ids);
+  List<Player> findAllByIdIn(Collection<String> ids);
 }

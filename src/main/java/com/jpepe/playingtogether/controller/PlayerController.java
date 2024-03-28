@@ -19,7 +19,7 @@ public class PlayerController {
   }
 
   @GetMapping("/{playerId}")
-  public PlayerResponseVo getPlayerInfo(@PathVariable Long playerId) {
+  public PlayerResponseVo getPlayerInfo(@PathVariable String playerId) {
     return playerService.getPlayerInfo(playerId);
   }
 }
