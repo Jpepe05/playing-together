@@ -3,7 +3,7 @@ name: Deploy to AWS beanstalk
 on:
   push:
     branches:
-      - master
+      - main
       - dev/*
 
 jobs:
