@@ -1,5 +1,6 @@
 package com.jpepe.playingtogether.service;
 
+import com.jpepe.playingtogether.exception.EntityNotFoundException;
 import com.jpepe.playingtogether.mapper.MatchMapper;
 import com.jpepe.playingtogether.repository.MatchRepository;
 import com.jpepe.playingtogether.repository.PlayerRepository;
@@ -35,7 +36,7 @@ public class MatchService {
     var players = playerRepository.findAllByIdIn(playerIds);
 
     if (playerIds.size() != players.size()) {
-      throw new RuntimeException("Some players doesnt have an account");
+      throw new EntityNotFoundException("Some players does not have an account");
     }
 
     var match = matchMapper.from(matchRequestVo, players, categoryWords);
