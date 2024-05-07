@@ -6,7 +6,6 @@ import com.jpepe.playingtogether.vo.request.PlayerUpdateRequestVo;
 import com.jpepe.playingtogether.vo.response.PlayerResponseVo;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
-import org.mapstruct.MappingTarget;
 
 @Mapper
 public interface PlayerMapper {

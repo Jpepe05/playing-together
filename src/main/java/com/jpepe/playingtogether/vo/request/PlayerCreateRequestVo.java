@@ -1,3 +1,7 @@
 package com.jpepe.playingtogether.vo.request;
 
-public record PlayerCreateRequestVo(String id, String name, boolean isGuardian, int age) {}
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Positive;
+
+public record PlayerCreateRequestVo(
+    @NotEmpty String id, @NotEmpty String name, boolean isGuardian, @Positive int age) {}

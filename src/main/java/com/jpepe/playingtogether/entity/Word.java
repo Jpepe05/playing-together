@@ -17,7 +17,7 @@ public class Word {
 
   @Id @EqualsAndHashCode.Include private String name;
 
-  @OneToMany(mappedBy = "id.word")
+  @OneToMany(mappedBy = "id.word", fetch = FetchType.LAZY)
   private Set<CategoryWord> categoryWords;
 
   public Word(String name) {

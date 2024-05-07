@@ -1,3 +1,6 @@
 package com.jpepe.playingtogether.vo.request;
 
-public record PlayerUpdateRequestVo(String name, int age) {}
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Positive;
+
+public record PlayerUpdateRequestVo(@NotEmpty String name, @Positive int age) {}
