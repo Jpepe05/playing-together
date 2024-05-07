@@ -1,0 +1,30 @@
+spring:
+  application:
+    name: playing-together
+  jpa:
+    generate-ddl: true
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: true
+  ai:
+    openai:
+      api-key: ${SPRING_AI_OPENAI_API_KEY}
+      chat:
+        options:
+          model: gpt-4-turbo
+          response-format: json_object
+          temperature: 0.0
+    retry:
+      max-attempts: 2
+  docker:
+    compose:
+      enabled: false
+
+server:
+  error:
+    include-message: always
+
+management:
+  health:
+    redis:
+      enabled: false
