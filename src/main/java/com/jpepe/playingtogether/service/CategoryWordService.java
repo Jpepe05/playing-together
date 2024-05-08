@@ -14,6 +14,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -44,7 +46,10 @@ public class CategoryWordService {
   @Transactional
   public List<CategoryWord> addCategoryWordListIfNotExists(List<RoundRequestVo> roundRequestVo) {
     return roundRequestVo.stream()
-        .map(round -> addCategoryWordIfNotExists(round.category(), round.wordToGuess()))
+        .map(
+            round ->
+                addCategoryWordIfNotExists(
+                    round.category().toLowerCase(), round.wordToGuess().toLowerCase()))
         .toList();
   }
 
@@ -52,5 +57,19 @@ public class CategoryWordService {
   public List<WordsByCategoryResponseVo> findAllWordsGroupedByCategory() {
     var categoryWords = categoryWordRepository.findAll();
     return wordsByCategoryResponseVoMapper.from(categoryWords);
+  }
+
+  @Transactional
+  public void addWordsByCategory(String category, Set<String> words) {
+    var categoryEntity = categoryRepository.save(new Category(category.toLowerCase()));
+
+    var wordEntities =
+        wordRepository.saveAll(
+            words.stream().map(String::toLowerCase).map(Word::new).collect(Collectors.toSet()));
+
+    categoryWordRepository.saveAll(
+        wordEntities.stream()
+            .map(word -> new CategoryWord(categoryEntity, word))
+            .collect(Collectors.toSet()));
   }
 }
