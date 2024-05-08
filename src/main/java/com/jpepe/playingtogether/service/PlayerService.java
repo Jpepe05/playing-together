@@ -5,6 +5,7 @@ import com.jpepe.playingtogether.exception.EntityNotFoundException;
 import com.jpepe.playingtogether.mapper.PlayerMapper;
 import com.jpepe.playingtogether.repository.PlayerRepository;
 import com.jpepe.playingtogether.vo.request.PlayerCreateRequestVo;
+import com.jpepe.playingtogether.vo.request.PlayerEducationHealthRequestVo;
 import com.jpepe.playingtogether.vo.request.PlayerUpdateRequestVo;
 import com.jpepe.playingtogether.vo.response.PlayerResponseVo;
 import lombok.RequiredArgsConstructor;
@@ -33,12 +34,20 @@ public class PlayerService {
   @Transactional
   public void updatePlayer(String playerId, PlayerUpdateRequestVo playerVo) {
     var player = playerRepository.findById(playerId).orElseThrow(EntityNotFoundException::new);
-    var updatedPlayer = playerMapper.from(player, playerVo);
+    var updatedPlayer = playerMapper.update(player, playerVo);
     playerRepository.save(updatedPlayer);
   }
 
+  @Transactional(readOnly = true)
   public PlayerResponseVo getPlayerInfo(String playerId) {
     var player = playerRepository.findById(playerId).orElseThrow(EntityNotFoundException::new);
     return playerMapper.to(player);
+  }
+
+  @Transactional
+  public void updatePlayerProfile(String playerId, PlayerEducationHealthRequestVo playerVo) {
+    var player = playerRepository.findById(playerId).orElseThrow(EntityNotFoundException::new);
+    var updatedPlayer = playerMapper.update(player, playerVo);
+    playerRepository.save(updatedPlayer);
   }
 }

@@ -1,6 +1,7 @@
 package com.jpepe.playingtogether.controller;
 
 import com.jpepe.playingtogether.service.PlayerService;
+import com.jpepe.playingtogether.vo.request.PlayerEducationHealthRequestVo;
 import com.jpepe.playingtogether.vo.request.PlayerCreateRequestVo;
 import com.jpepe.playingtogether.vo.request.PlayerUpdateRequestVo;
 import com.jpepe.playingtogether.vo.response.PlayerResponseVo;
@@ -32,5 +33,13 @@ public class PlayerController {
   @GetMapping("/{playerId}")
   public PlayerResponseVo getPlayerInfo(@PathVariable String playerId) {
     return playerService.getPlayerInfo(playerId);
+  }
+
+  @ResponseStatus(HttpStatus.NO_CONTENT)
+  @PatchMapping("/{playerId}")
+  public void updatePlayerInfo(
+      @PathVariable String playerId,
+      @RequestBody PlayerEducationHealthRequestVo playerEducationHealthRequestVo) {
+    playerService.updatePlayerProfile(playerId, playerEducationHealthRequestVo);
   }
 }

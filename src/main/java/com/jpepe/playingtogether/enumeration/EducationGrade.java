@@ -1,0 +1,18 @@
+package com.jpepe.playingtogether.enumeration;
+
+public enum EducationGrade {
+  NURSERY,
+  PRE_SCHOOL,
+  FIRST_GRADE,
+  SECOND_GRADE,
+  THIRD_GRADE,
+  FOURTH_GRADE,
+  FIFTH_GRADE,
+  SIXTH_GRADE,
+  SEVENTH_GRADE,
+  EIGHTH_GRADE,
+  NINTH_GRADE,
+  HIGH_SCHOOL_FIRST_YEAR,
+  HIGH_SCHOOL_SECOND_YEAR,
+  HIGH_SCHOOL_THIRD_YEAR
+}

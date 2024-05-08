@@ -1,8 +1,6 @@
 package com.jpepe.playingtogether.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 import lombok.Data;
 
 import java.util.List;
@@ -20,4 +18,7 @@ public class Player {
 
   @OneToMany(mappedBy = "artist")
   private List<Round> paintedRounds;
+
+  @Embedded private EducationInfo educationInfo;
+  @Embedded private ConditionInfo conditionInfo;
 }
