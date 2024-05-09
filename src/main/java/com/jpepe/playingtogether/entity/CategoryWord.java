@@ -14,7 +14,7 @@ import java.util.Set;
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class CategoryWord {
 
-  @EmbeddedId public CategoryWordId id;
+  @EqualsAndHashCode.Include @EmbeddedId public CategoryWordId id;
 
   @OneToMany(mappedBy = "categoryWord")
   private Set<Round> rounds = new HashSet<>();
