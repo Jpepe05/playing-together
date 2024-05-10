@@ -68,7 +68,7 @@ public interface RoundMapper {
     round.setPlayerRounds(playerRounds);
     round.setArtist(playersMap.get(roundRequestVo.artistId()));
     round.setCategoryWord(
-        categoryWordMap.get(getKey(roundRequestVo.category(), roundRequestVo.wordToGuess())));
+        categoryWordMap.get(getKey(roundRequestVo.category().toLowerCase(), roundRequestVo.wordToGuess().toLowerCase())));
   }
 
   private static String getKey(String category, String word) {
