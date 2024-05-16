@@ -5,7 +5,6 @@ import com.jpepe.playingtogether.entity.CategoryWord;
 import com.jpepe.playingtogether.entity.CategoryWordId;
 import com.jpepe.playingtogether.entity.Word;
 import com.jpepe.playingtogether.vo.response.WordsByCategoryResponseVo;
-import org.jetbrains.annotations.NotNull;
 import org.mapstruct.Mapper;
 import org.springframework.util.CollectionUtils;
 
@@ -28,7 +27,6 @@ public interface WordsByCategoryResponseVoMapper {
     return getWordsByCategoryResponseVos(wordsGroupedByCategory);
   }
 
-  @NotNull
   private static Map<Category, List<Word>> getWordsGroupedByCategory(
       Collection<CategoryWord> categoryWordIds) {
     return categoryWordIds.stream()
@@ -39,7 +37,6 @@ public interface WordsByCategoryResponseVoMapper {
                 Collectors.mapping(CategoryWordId::getWord, Collectors.toList())));
   }
 
-  @NotNull
   private static List<WordsByCategoryResponseVo> getWordsByCategoryResponseVos(
       Map<Category, List<Word>> wordsGroupedByCategory) {
     return wordsGroupedByCategory.entrySet().stream()
@@ -47,7 +44,6 @@ public interface WordsByCategoryResponseVoMapper {
         .toList();
   }
 
-  @NotNull
   private static WordsByCategoryResponseVo map(Map.Entry<Category, List<Word>> entry) {
     return new WordsByCategoryResponseVo(
         entry.getKey().getName(),

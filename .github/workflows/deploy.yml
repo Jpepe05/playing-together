@@ -1,4 +1,4 @@
-name: Deploy to AWS beanstalk
+name: Deploy to AWS LightSail
 
 on:
   push:

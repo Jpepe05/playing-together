@@ -18,7 +18,6 @@ public class SimilarityConfiguration {
         new EqualSimilarity(),
         new LevenshteinSimilarity(),
         new MetaphoneSimilarity(),
-        new WordNetSimilarity(),
         new GptSimilarity(chatClient, wordSimilarityPrompt));
   }
 }
