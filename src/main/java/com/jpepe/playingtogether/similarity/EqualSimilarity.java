@@ -12,6 +12,6 @@ public class EqualSimilarity extends Similarity {
               + word1
               + "', indicando uma correspondência exata sem variações.");
     }
-    return checkNext(word1, word2);
+    return checkNext(word1.toLowerCase(), word2.toLowerCase());
   }
 }

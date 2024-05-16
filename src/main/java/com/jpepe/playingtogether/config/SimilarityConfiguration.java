@@ -1,23 +1,23 @@
 package com.jpepe.playingtogether.config;
 
-import com.jpepe.playingtogether.similarity.*;
-import org.springframework.ai.chat.ChatClient;
-import org.springframework.beans.factory.annotation.Value;
+import com.jpepe.playingtogether.service.ChatService;
+import com.jpepe.playingtogether.similarity.EqualSimilarity;
+import com.jpepe.playingtogether.similarity.GptSimilarity;
+import com.jpepe.playingtogether.similarity.LevenshteinSimilarity;
+import com.jpepe.playingtogether.similarity.MetaphoneSimilarity;
+import com.jpepe.playingtogether.similarity.Similarity;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.io.Resource;
 
 @Configuration
 public class SimilarityConfiguration {
 
   @Bean
-  public Similarity similarity(
-      ChatClient chatClient,
-      @Value("classpath:/prompts/word-similarity.st") Resource wordSimilarityPrompt) {
+  public Similarity similarity(ChatService chatService) {
     return Similarity.link(
         new EqualSimilarity(),
         new LevenshteinSimilarity(),
         new MetaphoneSimilarity(),
-        new GptSimilarity(chatClient, wordSimilarityPrompt));
+        new GptSimilarity(chatService));
   }
 }
