@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - main
-      - dev/*
 
 jobs:
   build:
@@ -26,26 +25,27 @@ jobs:
       - name: Upload JAR
         uses: actions/upload-artifact@v2
         with:
-          name: artifact
+          name: playing-together-jar
           path: target/playing-together-0.0.1-SNAPSHOT.jar
 
   deploy:
     needs: build
     name: deploy
     runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
     steps:
       - name: Download JAR
         uses: actions/download-artifact@v2
         with:
-          name: artifact
+          name: playing-together-jar
 
-      - name: Deploy to EB
-        uses: einaregilsson/beanstalk-deploy@v20
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
         with:
-            aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
-            aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-            application_name: playing-together
-            environment_name: production
-            version_label: ${{ github.SHA }}
-            region: sa-east-1
-            deployment_package: playing-together-0.0.1-SNAPSHOT.jar
+          aws-region: us-east-1
+          role-to-assume: ${{ secrets.AWS_GITHUB_ACTION_ROLE }}
+
+      - name: Upload jar to s3
+        run: aws s3 cp ./playing-together-0.0.1-SNAPSHOT.jar ${{ vars.AWS_S3_PATH }}
