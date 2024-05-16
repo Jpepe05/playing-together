@@ -2,11 +2,13 @@ package com.jpepe.playingtogether.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.ToString;
 
 import java.util.List;
 
 @Entity
 @Data
+@ToString(exclude = {"playerRounds", "paintedRounds"})
 public class Player {
   @Id private String id;
   private String name;
