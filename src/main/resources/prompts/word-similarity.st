@@ -7,4 +7,6 @@ Please evaluate the relationship between the drawing and the guess based on the 
 - OTHER: Identify if there are other forms of similarity that do not fit the above categories but are still relevant. For example, 'moon' and 'night' share a conceptual relationship because they are commonly associated with each other.
 - DIFFERENT: Confirm if '{drawing}' and '{guess}' are completely unrelated with no apparent connection.
 
+Remember, if the words could both fit in SAME_CATEGORY and CONTEXTUAL_CONNECTION for example, choose SAME_CATEGORY because it appears earlier in the list, having a higher precedence.
+
 {format}

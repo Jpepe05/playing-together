@@ -15,7 +15,7 @@ import org.springframework.context.annotation.Configuration;
 public class SimilarityConfiguration {
 
   @Bean
-  public Similarity similarity(ChatService chatService) {
+  public Similarity enhancedSimilarity(ChatService chatService) {
     return Similarity.link(
         new LowerCaseHandler(),
         new EqualSimilarity(),
@@ -23,5 +23,15 @@ public class SimilarityConfiguration {
         new LevenshteinSimilarity(),
         new MetaphoneSimilarity(),
         new GptSimilarity(chatService));
+  }
+
+  @Bean
+  public Similarity basicSimilarity() {
+    return Similarity.link(
+        new LowerCaseHandler(),
+        new EqualSimilarity(),
+        new AccentuationSimilarity(),
+        new LevenshteinSimilarity(),
+        new MetaphoneSimilarity());
   }
 }

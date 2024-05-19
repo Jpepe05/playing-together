@@ -3,7 +3,6 @@ package com.jpepe.playingtogether.service;
 import com.jpepe.playingtogether.similarity.SimilarityResult;
 import java.util.Map;
 import lombok.RequiredArgsConstructor;
-import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.ai.chat.ChatClient;
 import org.springframework.ai.chat.ChatResponse;
@@ -36,8 +35,8 @@ public class ChatService {
   }
 
   @Cacheable("similarity")
-  @SneakyThrows
   public SimilarityResult compareWords(String word1, String word2) {
+    log.info("Calling OpenAI API");
     var response = callGptApi(word1, word2);
     return outputParser.parse(response.getResult().getOutput().getContent());
   }
