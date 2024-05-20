@@ -8,6 +8,7 @@ import com.jpepe.playingtogether.vo.request.PlayerUpdateRequestVo;
 import com.jpepe.playingtogether.vo.response.PlayerResponseVo;
 import com.jpepe.playingtogether.vo.response.PlayerStatisticsResponseVo;
 import jakarta.validation.Valid;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -49,5 +50,10 @@ public class PlayerController {
   @GetMapping("/{playerId}/statistics")
   public PlayerStatisticsResponseVo getPlayerStatistics(@PathVariable String playerId) {
     return analysisService.getPlayerStatistics(playerId);
+  }
+
+  @GetMapping
+  public List<PlayerResponseVo> getAllPlayersInfo() {
+    return playerService.getAllPlayersInfo();
   }
 }

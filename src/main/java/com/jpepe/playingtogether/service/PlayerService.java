@@ -8,6 +8,7 @@ import com.jpepe.playingtogether.vo.request.PlayerCreateRequestVo;
 import com.jpepe.playingtogether.vo.request.PlayerEducationHealthRequestVo;
 import com.jpepe.playingtogether.vo.request.PlayerUpdateRequestVo;
 import com.jpepe.playingtogether.vo.response.PlayerResponseVo;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -49,5 +50,11 @@ public class PlayerService {
     var player = playerRepository.findById(playerId).orElseThrow(EntityNotFoundException::new);
     var updatedPlayer = playerMapper.update(player, playerVo);
     playerRepository.save(updatedPlayer);
+  }
+
+  @Transactional(readOnly = true)
+  public List<PlayerResponseVo> getAllPlayersInfo() {
+    var players = playerRepository.findAll();
+    return playerMapper.to(players);
   }
 }
