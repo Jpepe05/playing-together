@@ -29,4 +29,10 @@ public class CategoryController {
       @PathVariable @NotBlank String category, @RequestBody @NotEmpty Set<@NotBlank String> words) {
     categoryWordService.addWordsByCategory(category, words);
   }
+
+  @ResponseStatus(HttpStatus.NO_CONTENT)
+  @DeleteMapping("/{category}/{word}")
+  public void deleteWord(@PathVariable String category, @PathVariable String word) {
+    categoryWordService.deleteCategoryWord(category.toLowerCase(), word.toLowerCase());
+  }
 }

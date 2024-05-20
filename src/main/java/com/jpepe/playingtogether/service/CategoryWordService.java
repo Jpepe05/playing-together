@@ -55,7 +55,7 @@ public class CategoryWordService {
 
   @Transactional(readOnly = true)
   public List<WordsByCategoryResponseVo> findAllWordsGroupedByCategory() {
-    var categoryWords = categoryWordRepository.findAll();
+    var categoryWords = categoryWordRepository.findAllByActiveTrue();
     return wordsByCategoryResponseVoMapper.from(categoryWords);
   }
 
@@ -71,5 +71,14 @@ public class CategoryWordService {
         wordEntities.stream()
             .map(word -> new CategoryWord(categoryEntity, word))
             .collect(Collectors.toSet()));
+  }
+
+  public void deleteCategoryWord(String category, String word) {
+    var categoryWord = categoryWordRepository.findByCategoryAndWord(category, word);
+    if (categoryWord.isPresent()) {
+      var categoryWordEntity = categoryWord.get();
+      categoryWordEntity.setActive(false);
+      categoryWordRepository.save(categoryWordEntity);
+    }
   }
 }

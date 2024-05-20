@@ -18,6 +18,9 @@ public class CategoryWord {
 
   @EqualsAndHashCode.Include @EmbeddedId public CategoryWordId id;
 
+  @Column(nullable = false)
+  boolean active = true;
+
   @OneToMany(mappedBy = "categoryWord")
   private Set<Round> rounds = new HashSet<>();
 
