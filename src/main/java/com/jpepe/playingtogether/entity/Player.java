@@ -13,7 +13,8 @@ public class Player {
   @Id private String id;
   private String name;
   private boolean isGuardian;
-  private int age;
+
+  private Integer age;
 
   @OneToMany(mappedBy = "player")
   private List<PlayerRound> playerRounds;

@@ -16,6 +16,7 @@ import org.mapstruct.NullValueMappingStrategy;
 @Mapper
 public interface PlayerMapper {
 
+  @Mapping(target = "age", ignore = true)
   @Mapping(target = "educationInfo", ignore = true)
   @Mapping(target = "conditionInfo", ignore = true)
   @Mapping(target = "paintedRounds", ignore = true)
@@ -29,6 +30,7 @@ public interface PlayerMapper {
   @IterableMapping(nullValueMappingStrategy = NullValueMappingStrategy.RETURN_DEFAULT)
   List<PlayerResponseVo> to(Collection<Player> players);
 
+  @Mapping(target = "age", ignore = true)
   @Mapping(target = "id", ignore = true)
   @Mapping(target = "guardian", ignore = true)
   @Mapping(target = "educationInfo", ignore = true)
@@ -38,7 +40,6 @@ public interface PlayerMapper {
   Player update(@MappingTarget Player player, PlayerUpdateRequestVo playerVo);
 
   @Mapping(target = "name", ignore = true)
-  @Mapping(target = "age", ignore = true)
   @Mapping(target = "id", ignore = true)
   @Mapping(target = "guardian", ignore = true)
   @Mapping(target = "paintedRounds", ignore = true)

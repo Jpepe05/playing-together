@@ -43,7 +43,7 @@ public class PlayerController {
   @PatchMapping("/{playerId}")
   public void updatePlayerInfo(
       @PathVariable String playerId,
-      @RequestBody PlayerEducationHealthRequestVo playerEducationHealthRequestVo) {
+      @Valid @RequestBody PlayerEducationHealthRequestVo playerEducationHealthRequestVo) {
     playerService.updatePlayerProfile(playerId, playerEducationHealthRequestVo);
   }
 
