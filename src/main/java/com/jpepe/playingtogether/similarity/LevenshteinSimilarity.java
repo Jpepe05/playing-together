@@ -13,7 +13,7 @@ public class LevenshteinSimilarity extends Similarity {
     int distance = LevenshteinDistance.getDefaultInstance().apply(normalizedWord1, normalizedWord2);
     if (distance <= 2) {
       return new SimilarityResult(
-          SimilarityType.TYPOGRAPHICAL_SIMILAR,
+          SimilarityType.ORTHOGRAPHIC_SIMILAR,
           "As palavras apresentam uma pequena variação ortográfica. '"
               + word1
               + "' e '"

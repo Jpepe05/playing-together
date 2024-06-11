@@ -16,7 +16,7 @@ public class NormalizedSimilarityScoreStrategy implements ScoreStrategy {
                 eval ->
                     switch (eval.getSimilarityResult().type()) {
                       case EQUAL -> 2.0;
-                      case ACCENTUATION_SIMILAR, TYPOGRAPHICAL_SIMILAR -> 1.0;
+                      case ACCENTUATION_SIMILAR, ORTHOGRAPHIC_SIMILAR -> 1.0;
                       case PHONETIC_SIMILAR,
                               SEMANTICALLY_RELATED,
                               SAME_CATEGORY,

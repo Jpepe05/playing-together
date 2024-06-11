@@ -8,7 +8,7 @@ import lombok.Getter;
 public enum SimilarityType {
   EQUAL,
   ACCENTUATION_SIMILAR, // Accentuation
-  TYPOGRAPHICAL_SIMILAR, // Levenshtein
+  ORTHOGRAPHIC_SIMILAR, // Levenshtein
   PHONETIC_SIMILAR, // Metaphone/Soundex
   SEMANTICALLY_RELATED, // GPT
   SAME_CATEGORY, // GPT
